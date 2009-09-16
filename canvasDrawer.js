@@ -3,10 +3,12 @@
 * @copyright Copyright (c) 2009 Mike Taylor
 * @license http://www.opensource.org/licenses/mit-license.php
 * @version 0.0.1
+*
+* All drawings begin in top left corner of <canvas>
 */
 
 // namespace
-var _MT = {};
+var _MT = _MT || {};
 
 (function() {
 	
@@ -14,12 +16,13 @@ var _MT = {};
 		// grab canvas element
 		var canvas = document.getElementById(canvas_id);
 		
-		if (canvas.getContext) {
+		if (canvas && canvas.getContext) {
 			//and set its 2d context, after testing for support
 			var context = canvas.getContext("2d");
 
 			// set up private context props for drawing.
-			context.lineWidth = 2;
+			context.lineWidth = 5;
+			context.strokeStyle = "#369"
 			context.lineCap = "round";
 			context.lineJoin = "round";
 			
@@ -37,6 +40,12 @@ var _MT = {};
 
 				down: function() {
 					//draw a line down
+					
+					context.beginPath();
+					context.moveTo(20,20);
+					context.lineTo(20,100);
+					context.stroke();
+					
 					console.log("down");
 				},
 
