@@ -21,42 +21,79 @@ var _MT = _MT || {};
 			var context = canvas.getContext("2d");
 
 			// set up private context props for drawing.
-			context.lineWidth = 5;
+			context.lineWidth = 3;
 			context.strokeStyle = "#369"
 			context.lineCap = "round";
 			context.lineJoin = "round";
 			
-			return _self = {
-				
+			return {
+				//initial position
+				pX: 40,
+				pY: 40,
+					
 				up: function() {
-					//draw a line up
-					console.log("up");
+					context.beginPath();
+					context.moveTo(this.pX,this.pY);
+					
+					//update target position
+					this.pY -= 100;
+					
+					context.lineTo(this.pX,this.pY);
+					context.stroke();
+					
+					return this;
 				},
 
 				right: function() {
 					//draw a line to the right
-					console.log("right");
+					
+					context.beginPath();
+					context.moveTo(this.pX,this.pY);
+					
+					//update target position
+					this.pX += 100;
+					
+					context.lineTo(this.pX,this.pY);
+					context.stroke();
+					
+					return this;
 				},
 
 				down: function() {
 					//draw a line down
 					
 					context.beginPath();
-					context.moveTo(20,20);
-					context.lineTo(20,100);
-					context.stroke();
+					context.moveTo(this.pX,this.pY);
 					
-					console.log("down");
+					//update target position
+					this.pY += 100;
+					
+					context.lineTo(this.pX,this.pY);
+					context.stroke();
+
+					return this;
 				},
 
 				left: function() {
 					//draw a line to the left
-					console.log("left");
+					
+					context.beginPath();
+					context.moveTo(this.pX,this.pY);
+					
+					//update target position
+					this.pX -= 100;
+					
+					context.lineTo(this.pX,this.pY);
+					context.stroke();
+					
+					return this;
 				},
 
 				clear: function() {
 					//clear the canvas
-					canvas.width = canvas.width
+					canvas.width = canvas.width;
+					
+					return this;
 				},
 
 				save: function() {
