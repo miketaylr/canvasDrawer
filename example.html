@@ -4,7 +4,6 @@
 	<meta charset="utf-8">
 	<title>canvasDrawer example page</title>
 	<style type="text/css" media="screen">
-		body {padding-left:200px;}
 		#example {border:1px solid #ccc;-moz-box-shadow:2px 2px 3px #000;-webkit-box-shadow:2px 2px 3px #000;}
 	</style>
 </head>
@@ -15,13 +14,8 @@
 	</canvas>
 	<script src="canvasDrawer.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
-		x = new _MT.CanvasDrawer("example");
-		x.right();
-		x.down();
-		x.down();
-		x.right();
-		x.up();
-		x.left();
-		x.left();
+		x = new _MT.CanvasDrawer({_id:"example",lineWidth:4,strokeStyle:"magenta"});
+
+		x.right().down().down().right().up();	
 	</script>
 </body>
