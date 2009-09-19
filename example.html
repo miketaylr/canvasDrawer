@@ -12,10 +12,13 @@
 	<canvas id="example" width="1100" height="400">
 		<p>If you can see this, your browser sucks.</p>
 	</canvas>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
 	<script src="canvasDrawer.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
-		x = new _MT.CanvasDrawer({_id:"example",lineWidth:4,strokeStyle:"magenta"});
-
-		x.right().down().down().right().up();	
+	(function($){
+		x = new _MT.CanvasDrawer({id:"example",lineWidth:20,pY:40,pX:40});
+		x.right();
+	})(jQuery);
+		
 	</script>
 </body>

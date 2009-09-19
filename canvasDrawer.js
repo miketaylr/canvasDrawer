@@ -10,52 +10,53 @@
 // namespace
 var _MT = {};
 
-(function() {
-	
 	_MT.CanvasDrawer = function(options) {
 		// grab canvas element
-		var canvas = document.getElementById(options._id);
+		var canvas = document.getElementById(options.id);
 		
 		if (canvas && canvas.getContext) {
 			//and set its 2d context, after testing for support
 			var context = canvas.getContext("2d");
 
-			// set up private context props for drawing.
-			context.lineWidth = options.lineWidth;
-			context.strokeStyle = options.strokeStyle;
-			
+			// set props from options
+			context.lineWidth = options.lineWidth || 4;
+			context.strokeStyle = options.strokeStyle || "#999";
+			context.lineCap = options.lineCap || "round";
+			context.pX = options.pX || 40;
+			context.pY = options.pY || 40;
+
 			return {
-				//initial position
-				pX: 40,
-				pY: 40,
-				
+
 				//generic move function
 				move: function(changeX, changeY) {
 					context.beginPath();
-					context.moveTo(this.pX,this.pY);
+					context.moveTo(context.pX,context.pY);
 					
-					this.pX += changeX;
-					this.pY += changeY;
+					context.pX += changeX;
+					context.pY += changeY;
 					
-					context.lineTo(this.pX,this.pY);
+					context.lineTo(context.pX,context.pY);
 					context.stroke();
-					return this;
 				},
 				
 				up: function() {
-					this.move(0,-100);
+					this.move(0,-200);
+					return this;
 				},
 
 				right: function() {
-					this.move(100,0);
+					this.move(200,0);
+					return this;
 				},
 
 				down: function() {
-					this.move(0,100);
+					this.move(0,200);
+					return this;
 				},
 
 				left: function() {
-					this.move(-100,0);
+					this.move(-200,0);
+					return this;
 				},
 
 				clear: function() {
@@ -75,4 +76,3 @@ var _MT = {};
 			};
 		};
 	};
-})();
