@@ -10,23 +10,22 @@
 // namespace
 var _MT = {};
 
-_MT.CanvasDrawer = function(options) {
+_MT.CanvasClicker = function(options) {
 	// grab canvas element
 	var canvas = document.getElementById(options.id);
 	
 	if (canvas && canvas.getContext) {
 		//and set its 2d context, after testing for support
-		var context = canvas.getContext("2d");
+		context = canvas.getContext("2d");
 
 		// set props from options
-		context.lineWidth = options.lineWidth || 4;
-		context.strokeStyle = options.strokeStyle || "#999";
+		context.lineWidth = options.size || 4;
+		context.strokeStyle = options.color || "#999";
 		context.lineCap = options.lineCap || "round";
-		context.pX = options.pX || 40;
-		context.pY = options.pY || 40;
+		context.pX = null;
+		context.pY = null;
 
 		return {
-
 			//generic move function
 			move: function(changeX, changeY) {
 				context.beginPath();
@@ -38,40 +37,8 @@ _MT.CanvasDrawer = function(options) {
 				context.lineTo(context.pX,context.pY);
 				context.stroke();
 			},
-			
-			up: function() {
-				this.move(0,-200);
-				return this;
-			},
-
-			right: function() {
-				this.move(200,0);
-				return this;
-			},
-
-			down: function() {
-				this.move(0,200);
-				return this;
-			},
-
-			left: function() {
-				this.move(-200,0);
-				return this;
-			},
-
-			clear: function() {
-				//clear the canvas
-				canvas.width = canvas.width;
-				
-				return this;
-			},
-
-			save: function() {
-				//save the canvas to an image/png data url
-			},
-			
-			undo: function() {
-				//undo ?
+			hai: function(){
+				console.log("o hai");
 			}
 		};
 	};
