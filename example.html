@@ -8,7 +8,7 @@
 	</style>
 </head>
 <body>
-	<canvas id="example" width="1264" height="600">
+	<canvas id="example" width="1264" height="800">
 		<p>If you can see this, your browser sucks.</p>
 	</canvas>
 	
@@ -18,16 +18,25 @@
 	
 	(function($){
 		var d = new _MT.CanvasClicker({id:"example", color: "red", size: 15});
+		
+		//first click sets the initial drawing position
 		$("#example").one("click", function(e){
-			context.pX = e.pageX;
-			context.pY = e.pageY;
+			canvas.pX = e.pageX;
+			canvas.pY = e.pageY;
 			e.preventDefault();
 		});
+		
+		//set up click event for drawing
 		$("#example").click(function(e){
-			var moveX = e.pageX - context.pX,
-					moveY = e.pageY - context.pY;
+			var moveX = e.pageX - canvas.pX,
+					moveY = e.pageY - canvas.pY;
 			d.move(moveX, moveY);
 		});
+		
+		//draw our friendly trex onto the canvas
+		var trex = new Image();
+		trex.src = 'trex.png';
+		canvas.drawImage(trex, 0, 165);
 		
 	})(jQuery);
 		

@@ -12,34 +12,33 @@ var _MT = {};
 
 _MT.CanvasClicker = function(options) {
 	// grab canvas element
-	var canvas = document.getElementById(options.id);
-	
-	if (canvas && canvas.getContext) {
-		//and set its 2d context, after testing for support
-		context = canvas.getContext("2d");
+	canvas = document.getElementById(options.id).getContext("2d");
 
-		// set props from options
-		context.lineWidth = options.size || 4;
-		context.strokeStyle = options.color || "#999";
-		context.lineCap = options.lineCap || "round";
-		context.pX = null;
-		context.pY = null;
+	// set props from options
+	canvas.lineWidth = options.size || 4;
+	canvas.strokeStyle = options.color || "#999";
+	canvas.lineCap = options.lineCap || "round";
+	canvas.pX = null;
+	canvas.pY = null;
+	//canvas.shadowColor = options.shadowColor || "#ccc";
+	//canvas.shadowOffsetX = 4;
+	//canvas.shadowOffsetY = 4;
+	//canvas.shadowBlur = 10;
 
-		return {
-			//generic move function
-			move: function(changeX, changeY) {
-				context.beginPath();
-				context.moveTo(context.pX,context.pY);
-				
-				context.pX += changeX;
-				context.pY += changeY;
-				
-				context.lineTo(context.pX,context.pY);
-				context.stroke();
-			},
-			hai: function(){
-				console.log("o hai");
-			}
-		};
+	return {
+		//generic move function
+		move: function(changeX, changeY) {
+			canvas.beginPath();
+			canvas.moveTo(canvas.pX,canvas.pY);
+
+			canvas.pX += changeX;
+			canvas.pY += changeY;
+
+			canvas.lineTo(canvas.pX,canvas.pY);
+			canvas.stroke();
+		},
+		hai: function(){
+			console.log("o hai");
+		}
 	};
 };
