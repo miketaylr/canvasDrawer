@@ -23,6 +23,9 @@ _MT.CanvasClicker = function(options) {
 	ctxt.pY = null;
 
 	return self = {
+		init: function() {
+			
+		},
 		//generic move function
 		move: function(changeX, changeY) {
 			ctxt.beginPath();
@@ -31,7 +34,7 @@ _MT.CanvasClicker = function(options) {
 			ctxt.pX += changeX;
 			ctxt.pY += changeY;
 
-			ctxt.lineTo(ctxt.pX,ctxt.pY);
+			ctxt.lineTo(ctxt.pX, ctxt.pY);
 			ctxt.stroke();
 		},
 		draw_trex: function() {
@@ -39,7 +42,6 @@ _MT.CanvasClicker = function(options) {
 			trex.src = 'trex.png';
 			trex.addEventListener('load', function () {
 				ctxt.drawImage(this, 0, 160);
-				self.hai();
 			}, false);
 		},
 		write_stuff: function(text) {
