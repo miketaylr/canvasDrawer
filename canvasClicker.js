@@ -12,33 +12,43 @@ var _MT = {};
 
 _MT.CanvasClicker = function(options) {
 	// grab canvas element
-	canvas = document.getElementById(options.id).getContext("2d");
+	var canvas = document.getElementById(options.id);
+	ctxt = canvas.getContext("2d");
 
 	// set props from options
-	canvas.lineWidth = options.size || 4;
-	canvas.strokeStyle = options.color || "#999";
-	canvas.lineCap = options.lineCap || "round";
-	canvas.pX = null;
-	canvas.pY = null;
-	//canvas.shadowColor = options.shadowColor || "#ccc";
-	//canvas.shadowOffsetX = 4;
-	//canvas.shadowOffsetY = 4;
-	//canvas.shadowBlur = 10;
+	ctxt.lineWidth = options.size || 4;
+	ctxt.strokeStyle = options.color || "#999";
+	ctxt.lineCap = options.lineCap || "round";
+	ctxt.pX = null;
+	ctxt.pY = null;
 
-	return {
+	return self = {
 		//generic move function
 		move: function(changeX, changeY) {
-			canvas.beginPath();
-			canvas.moveTo(canvas.pX,canvas.pY);
+			ctxt.beginPath();
+			ctxt.moveTo(ctxt.pX,ctxt.pY);
 
-			canvas.pX += changeX;
-			canvas.pY += changeY;
+			ctxt.pX += changeX;
+			ctxt.pY += changeY;
 
-			canvas.lineTo(canvas.pX,canvas.pY);
-			canvas.stroke();
+			ctxt.lineTo(ctxt.pX,ctxt.pY);
+			ctxt.stroke();
+		},
+		draw_trex: function() {
+			var trex = new Image();
+			trex.src = 'trex.png';
+			trex.addEventListener('load', function () {
+				ctxt.drawImage(this, 0, 160);
+				self.hai();
+			}, false);
+		},
+		write_stuff: function(text) {
+			ctxt.font = 'normal 75px Yanone Tagesschrift';
+			ctxt.fillStyle = '#369';
+			ctxt.fillText(text, 480, 290);
 		},
 		hai: function(){
-			console.log("o hai");
+			console.log("ohai");
 		}
 	};
 };

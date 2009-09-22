@@ -21,28 +21,21 @@
 		
 		//first click sets the initial drawing position
 		$("#example").one("click", function(e){
-			canvas.pX = e.pageX;
-			canvas.pY = e.pageY;
+			ctxt.pX = e.pageX;
+			ctxt.pY = e.pageY;
 			e.preventDefault();
-		});
-		
-		//set up click event for drawing
-		$("#example").click(function(e){
-			var moveX = e.pageX - canvas.pX,
-					moveY = e.pageY - canvas.pY;
+		})
+		//each click after draws line
+		.click(function(e){
+			var moveX = e.pageX - ctxt.pX,
+					moveY = e.pageY - ctxt.pY;
 			d.move(moveX, moveY);
 		});
 		
-		//draw our friendly trex onto the canvas
-		var trex = new Image();
-		trex.src = 'trex.png';
-		canvas.drawImage(trex, 0, 165);
-		
 		//paint some text on the canvas
-		canvas.font = 'normal 75px Yanone Tagesschrift';
-		canvas.fillStyle = '#369';
-		canvas.fillText('RAWRRRRRRrrrrr', 480, 290);
 		
+		d.write_stuff("zOMG a canvas!");
+		d.draw_trex();
 	})(jQuery);
 		
 	</script>
