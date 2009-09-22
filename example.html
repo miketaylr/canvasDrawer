@@ -18,22 +18,11 @@
 	
 	(function($){
 		var d = new _MT.CanvasClicker({id:"example", color: "red", size: 15});
-		
-		//first click sets the initial drawing position
-		$("#example").one("click", function(e) {
-			ctxt.pX = e.pageX;
-			ctxt.pY = e.pageY;
-			e.preventDefault();
-		})
-		//each click after draws line
-		.click(function(e) {
-			var moveX = e.pageX - ctxt.pX,
-					moveY = e.pageY - ctxt.pY;
-			d.move(moveX, moveY);
-		});
 		d.init();
+		
 		//paint some text on the canvas
 		d.write_stuff("zOMG a canvas!");
+		
 		//paint a trex
 		d.draw_trex();
 	})(jQuery);
