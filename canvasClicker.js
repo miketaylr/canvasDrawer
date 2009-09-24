@@ -6,13 +6,13 @@
 */
 
 // namespace
-var _MT = {};
+var _MT = _MT || {};
 
 _MT.CanvasClicker = function(options) {
 	
 	// grab canvas element
-	var canvas = document.getElementById(options.id);
-	var ctxt = canvas.getContext("2d");
+	var canvas = document.getElementById(options.id),
+			ctxt = canvas.getContext("2d");
 
 	// set props from options
 	ctxt.lineWidth = options.size || 4;
@@ -25,11 +25,12 @@ _MT.CanvasClicker = function(options) {
 		
 		//bind click events
 		init: function() {
+			
 			//set pX and pY from first click
 			$(canvas).one("click", self.set_anchor_point)
 			
 			//each click after draws line
-			.click(self.draw_line);
+			.click(self.draw);
 		},
 		
 		//generic move function
@@ -39,10 +40,9 @@ _MT.CanvasClicker = function(options) {
 			e.preventDefault();
 		},
 		
-		draw_line: function(e) {
+		draw: function(e) {
 			var moveX = e.pageX - ctxt.pX,
 					moveY = e.pageY - ctxt.pY;
-
 			self.move(moveX, moveY);
 		},
 
@@ -66,13 +66,13 @@ _MT.CanvasClicker = function(options) {
 		},
 		
 		write_stuff: function(text) {
-			ctxt.font = 'normal 75px Yanone Tagesschrift';
+			ctxt.font = 'normal 75px Hobo Std';
 			ctxt.fillStyle = '#369';
 			ctxt.fillText(text, 480, 290);
 		},
 		
-		hai: function(){
-			console.log("ohai");
+		hai: function(msg){
+			console.log(msg);
 		}
 	};
 };
